@@ -1,0 +1,26 @@
+1.synchronized与lock对比：
+   相同：都是用来解决线程安全问题
+   不同：
+       1.synchronized是关键字，lock是对象
+       2.synchronized自动释放同步监视器，lock需要手动解锁
+       3.lock比synchronized更灵活
+
+   优先:Lock -> 同步代码块 -> 同步方法
+
+ 2.sleep()和wait()异同：
+    相同：都会让当前线程进入阻塞状态
+    不同：
+        1）sleep()是Thread的方法，wait()是Object的方法
+        2）wait()方法不需由同步监视器调用，会释放锁.sleep()不会释放锁
+        3）sleep阻塞时间固定，wait()需要等待被notify()
+
+3.创建多线程方式
+ *  1.继承Thread
+ *      new MyThread().start()
+ *  2.实现Runnable
+ *      new Thread(new MyRunnable()).start()
+ *  3.实现Callable 有返回值、支持泛型、可抛异常
+ *      new Thread(new FutureTask(new MyCallable())).start()
+ *  4.通过线程池获取线程：重复利用
+ *      ExecutorService es = Executors.newFixedThreadPool(100);
+ *      es.submit(Callable);//或es.execute(Runnable)
