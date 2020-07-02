@@ -19,7 +19,8 @@ public class Volatile {
 
     public static void main(String[] args) throws InterruptedException {
 //        see();
-        atomic();
+//        atomic();
+        sort();
     }
 
     /**
@@ -66,6 +67,26 @@ public class Volatile {
             Thread.yield();
         }
         System.out.println("num为：" + Volatile.num);
+    }
+
+    static int a = 0;
+    static boolean status = false;
+
+    /**
+     * 保证有序性：禁止指令重排
+     *  期待结果：1221
+     */
+    public static void sort() throws InterruptedException {
+        new Thread(() -> {
+            a = 100;
+            status = true;
+        }).start();
+
+        new Thread(() -> {
+            if(status) {
+                System.out.println(a);
+            }
+        }).start();
     }
 
 }

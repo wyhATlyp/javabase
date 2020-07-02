@@ -1,0 +1,27 @@
+内部类：内部类会被编译成一个新的字节码文件Out$Inner，外部类和内部类的私有属性相互可见
+1。成员内部类：非static的类
+	内部类定义：内部类不可以有static变量和方法，可以有常量(static final)。
+	创建内部类对象：必须通过一个外部类对象，out.new Inner()
+	调用内部类属性和方法：与正常类一样
+	内部类中对外部类的访问：
+		访问field：外部类中生成一个static的获取该属性的方法acceess$000()，内部类通过调用此方法获取外部类属性，重名时Out.this.i;
+		访问method：内部类中存在一个到外部类到引用this$0，如果调用的是非静态方法，则通过这个引用调用外部类的方法.
+	
+2。局部内部类：定义在一个方法或作用域内-非static
+	内部类不可以声明为static，除了方法和作用域内其他地方不可以使用此内部类
+	创建内部类对象：直接new Inner()
+
+3。匿名内部类：-非static
+	new Thread(new Runnable() {
+		@Overide
+		public void run() {
+		}
+	});
+	
+	使用lambda表达式时并不是内部类方式：生成一个方法lambda$main$0和一个属性BootstrapMethods,通过调用LambdaMetaFactory.metafactory()方法的防护执行
+
+4。静态内部类：同静态方法
+	内部类定义：可以声明普通或静态成员和方法
+	创建内部类对象：
+	内部类访问外部类：内部类不能使用外部类的非static域和方法
+	外部类中访问内部类的static field时：在内部类中生成一个静态方法acceess$002()供使用
