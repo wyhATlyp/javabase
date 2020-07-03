@@ -12,6 +12,7 @@ import java.util.concurrent.*;
  *      new Thread(new FutureTask(new MyCallable())).start()
  *  4.通过线程池获取线程：重复利用
  *      ExecutorService、Executors
+ *      Executors.newFixedThreadPool(20);//最大的活跃线程数，假如 设置为20，当第21个任务提交到线程池中时，需要暂时挂起，等待线程池中某个线程运行完才会开始执行。
  *
  *  Future接口
  *      对Runnable、Callable任务的执行结果进行取消、查询是否完成、获取结果

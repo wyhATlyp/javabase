@@ -1,3 +1,19 @@
-java.util.concurrent
-java.util.concurrent.atomic
-java.util.concurrent.locks
+JDK1.5后：
+java.util.concurrent：加强集合
+    ConcurrentHashMap HashTable的升级版
+    ConcurrentSkipListMap 安全的 TreeMap
+    ConcurrentSkipListSet
+    CopyOnWriteArrayList 解决ArrayList并发修改异常，不适合修改次数多时使用（写入时复制一个新的列表，效率低）
+        List list = Collections.synchronizedList(new ArrayList());//迭代同时修改数据存在异常-并发修改异常
+    CountDownLatch  闭锁，在完成某些运算时，其他线程的运算全部完成，当前运算才继续执行：main线程中计算其他线程的执行时间
+    Callable
+
+java.util.concurrent.atomic：原子操作
+    AtomicInteger
+    AtomicIntegerArray
+    AtomicReference
+
+java.util.concurrent.locks：显示锁，解决线程安全问题
+    Lock 线程通信：使用Condition代替Object的wait()和notify()进行线程通信
+        lock.newCondition(); condition.await(); condition.signal();
+    ReentrantLock

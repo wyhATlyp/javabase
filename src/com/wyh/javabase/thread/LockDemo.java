@@ -9,7 +9,7 @@ import java.util.concurrent.locks.ReentrantLock;
  *  fair:默认false true时先来的先执行，有序的执行
  *
  */
-public class Lock {
+public class LockDemo {
 
     private static int num = 0;
 
