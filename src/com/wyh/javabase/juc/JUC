@@ -1,19 +1,40 @@
 JDK1.5后：
-java.util.concurrent：加强集合
-    ConcurrentHashMap HashTable的升级版
-    ConcurrentSkipListMap 安全的 TreeMap
-    ConcurrentSkipListSet
-    CopyOnWriteArrayList 解决ArrayList并发修改异常，不适合修改次数多时使用（写入时复制一个新的列表，效率低）
-        List list = Collections.synchronizedList(new ArrayList());//迭代同时修改数据存在异常-并发修改异常
-    CountDownLatch  闭锁，在完成某些运算时，其他线程的运算全部完成，当前运算才继续执行：main线程中计算其他线程的执行时间
-    Callable
+java.util.concurrent
+    集合：
+        ConcurrentHashMap HashTable的升级版
+            JDK5后：锁分段机制，默认十六段。 JDK8后：改为CAS
+             *      segment0 -> [0,1,2...] -> 链表
+             *      segment1 -> [10,11,12...] -> 链表
+             *  线程安全的哈希表：HashTable的改进版
+        ConcurrentSkipListMap -排序 TreeMap(不支持同步，性能更好)
+            跳表，有序，空间换时间
+        ConcurrentSkipListSet
+        CopyOnWriteArrayList 解决ArrayList并发修改异常，不适合修改次数多时使用（写入时复制一个新的列表，效率低）java.util.ConcurrentModificationException
+
+    多线程
+        Callable
+        TimeUnit
+        CountDownLatch  闭锁，在完成某些运算时，其他线程的运算全部完成，当前运算才继续执行：main线程中计算其他线程的执行时间
+        Executor 线程的使用和调度的根接口
+            --ExecutorService 线程池的主要接口
+                --ThreadPoolExecutor 线程池的实现类
+                --ScheduledExecutorService 子接口，负责线程调度。延迟或定时执行
+                    --ScheduledThreadPoolExecutor 继承ThreadPoolExecutor，实现ScheduledExecutorService
+        Executors 创建线程池
+        ForkJoinPool 分支/合并框架(JDK7后)，大任务拆分成小任务执行。底层采用工作/窃取模式。
 
 java.util.concurrent.atomic：原子操作
     AtomicInteger
     AtomicIntegerArray
     AtomicReference
+    AtomicStampedReference
+    AtomicLong
+    LongAdder
 
 java.util.concurrent.locks：显示锁，解决线程安全问题
     Lock 线程通信：使用Condition代替Object的wait()和notify()进行线程通信
         lock.newCondition(); condition.await(); condition.signal();
+        //线程交替执行 三个线程ABC,每个线程循环循环十次，打印自己的名字。结果ABCABC...
     ReentrantLock
+    ReadWriteLock
+    StampedLock
