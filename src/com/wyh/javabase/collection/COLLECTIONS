@@ -1,0 +1,21 @@
+Collection
+    列表List：index方法
+    ArrayList
+    Vector
+    Stack
+    LinkedList 实现了 Deque
+
+    集合Set：完全继承Collection
+    HashSet
+    TreeSet
+    LinkedHashSet
+
+    队列Queue：入队、出队的方法FIFO
+    Deque：可以从两端进行操作，addFirst()、addLast()
+    BlockingQueue（juc）
+    BlockingDeque
+    ArrayBlockingQueue
+    LinkedBlockingQueue
+
+Map
+HashMap，TreeMap，HashTable，CocurrentHashMap，Properties
