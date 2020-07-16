@@ -7,8 +7,10 @@ import java.util.concurrent.locks.ReentrantLock;
 /**
  * 多线程举例：模拟     BlockingQueue
  * 生产者-消费者：
- *  生产者：添加、增加
- *  消费者：删除、减少
+ *  生产者：添加、增加 put(e) 如果队列满了，一直阻塞，直到队列有空间
+ *  消费者：删除、减少 take() 如果队列空了，一直阻塞，直到有元素
+ *  
+ *  实现原理:lock.newCondition(), condition.await(), conditon.signal()
  *
  *  使用阻塞队列解决线程等待的问题
  */

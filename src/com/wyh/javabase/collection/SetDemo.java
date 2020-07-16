@@ -12,11 +12,11 @@ public class SetDemo {
 
     public static void main(String[] args) {
         Set<String> sets = new HashSet<String>();
-        sets.add("123");
+        System.out.println(sets.add("123"));
         sets.add("12343");
         sets.add("456");
         sets.add("12");
-        sets.add("1334");
+        System.out.println(sets.add("123"));
         sets.add("1");
         Iterator<String> iterator = sets.iterator();
         while(iterator.hasNext()) {
